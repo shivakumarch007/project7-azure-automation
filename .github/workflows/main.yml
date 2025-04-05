@@ -1,0 +1,21 @@
+name: Azure CLI Storage Automation
+
+on: [push]
+
+jobs:
+  run-cli:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Run Storage Automation Script
+      run: |
+        chmod +x create_storage.sh
+        ./create_storage.sh
