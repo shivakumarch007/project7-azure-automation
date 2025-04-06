@@ -1,0 +1,13 @@
+name: Azure CLI Script Check
+
+on: [push]  # ⬅️ This means: run the workflow every time code is pushed to the repo
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # ⬅️ Run on a fresh Ubuntu virtual machine
+
+    steps:
+      - uses: actions/checkout@v2  # ⬅️ Step 1: Download your GitHub code into the runner
+
+      - name: Lint Bash Scripts     # ⬅️ Step 2: Run a syntax check (lint) on the bash script
+        run: bash -n create-vm.sh   # `bash -n` checks for errors in the script without running it
